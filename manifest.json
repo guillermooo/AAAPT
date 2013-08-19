@@ -1,0 +1,33 @@
+{
+	"name": "AAAPT",
+	"include": {
+		"dev": [
+			["*.*", ["*builder.py",
+					"*build.sh",
+					"*toplist.py",
+					"*.sublime-workspace",
+					"*.sublime-project",
+					"*.JSON-tmLanguage",
+					"*.ps1",
+					"*.hg*",
+					"*manifest.json"]
+			],
+
+			["./tests/*.py", []]
+		],
+		"release": [
+			["*.*", ["*builder.py",
+					 "*build.sh",
+					 "*toplist.py",
+					 "*.sublime-workspace",
+					 "*.sublime-project",
+					 "*.JSON-tmLanguage",
+					 "*.ps1",
+					 "*.hg*",
+					 "*manifest.json",
+					 "*.sublime-commands",
+					 "*test_harness.py"]
+			]
+		]
+	}
+}
