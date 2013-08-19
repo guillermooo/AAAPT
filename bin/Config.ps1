@@ -21,7 +21,7 @@ function GetConfigValue {
 		$s, $k, $v = $item.ToLower() -split ' ',3
 		if(($s -eq $section) -and ($k -eq $key)){
 			if(!$v){
-				throw "No value found for '$section:$key'."
+				throw "No value found for '${section}:$key'."
 			}
 			return $v
 		}

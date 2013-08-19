@@ -1,3 +1,3 @@
 [
-    { "caption": "AAAPT: Run Active Tests...", "command": "_pt_show_suites" }
+    { "caption": "AAAPT: Run Active Tests...", "command": "_xpt_show_suites" }
 ]

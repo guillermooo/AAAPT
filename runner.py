@@ -45,43 +45,43 @@ def combine(suite):
     all_tests = list(chain(*[data[1] for (key, data)
                                          in suite.items()
                                          if not key.startswith('_')]))
-    suite['_all_'] = ['_pt_run_tests', all_tests]
+    suite['_all_'] = ['_xpt_run_tests', all_tests]
     return suite
 
 
-class _pt_show_suites(sublime_plugin.WindowCommand):
+class _xpt_show_suites(sublime_plugin.WindowCommand):
     '''Displays a quick panel listing all available test stuites.
     '''
     suite = None
 
     @staticmethod
     def register(suite):
-        _pt_show_suites.suite = combine(suite)
+        _xpt_show_suites.suite = combine(suite)
 
     def run(self):
         TestsState.running = True
-        self.window.show_quick_panel(sorted(_pt_show_suites.suite.keys()), self.on_done)
+        self.window.show_quick_panel(sorted(_xpt_show_suites.suite.keys()), self.on_done)
 
     def on_done(self, idx):
         if idx == -1:
             sublime.status_message('_PackageTesting: No test suite selected.')
             return
 
-        suite_name = sorted(_pt_show_suites.suite.keys())[idx]
+        suite_name = sorted(_xpt_show_suites.suite.keys())[idx]
         TestsState.suite = suite_name
-        command_to_run, _ = _pt_show_suites.suite[suite_name]
+        command_to_run, _ = _xpt_show_suites.suite[suite_name]
 
         self.window.run_command(command_to_run)
 
 
-class _ptPrintResults(sublime_plugin.TextCommand):
+class _xptPrintResults(sublime_plugin.TextCommand):
     def run(self, edit, content):
         view = sublime.active_window().new_file()
         view.insert(edit, 0, content)
         view.set_scratch(True)
 
 
-class _ptRunTests(sublime_plugin.WindowCommand):
+class _xptRunTests(sublime_plugin.WindowCommand):
     def run(self):
         make_temp_file()
         # We open the file here, but Sublime Text loads it asynchronously, so we continue in an
@@ -89,7 +89,7 @@ class _ptRunTests(sublime_plugin.WindowCommand):
         self.window.open_file(TEST_DATA_PATH[1])
 
 
-class _ptTestDataDispatcher(sublime_plugin.EventListener):
+class _xptTestDataDispatcher(sublime_plugin.EventListener):
     def on_load(self, view):
         try:
             if (view.file_name() and view.file_name() == TEST_DATA_PATH[1] and
@@ -98,13 +98,13 @@ class _ptTestDataDispatcher(sublime_plugin.EventListener):
                     TestsState.running = False
                     TestsState.view = view
 
-                    _, suite_names = _pt_show_suites.suite[TestsState.suite]
+                    _, suite_names = _xpt_show_suites.suite[TestsState.suite]
                     suite = unittest.TestLoader().loadTestsFromNames(suite_names)
 
                     bucket = io.StringIO()
                     unittest.TextTestRunner(stream=bucket, verbosity=1).run(suite)
 
-                    view.run_command('_pt_print_results', {'content': bucket.getvalue()})
+                    view.run_command('_xpt_print_results', {'content': bucket.getvalue()})
                     w = sublime.active_window()
                     # Close data view.
                     w.run_command('prev_view')
