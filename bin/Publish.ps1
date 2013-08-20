@@ -36,5 +36,5 @@ if ($Release -and (!$DontUpload)) {
 		exit 1
 	}
 	start-process $deployUrl
-	($distDir).path | clip.exe
+	(resolve-path $distDir).path | clip.exe
 }
