@@ -11,7 +11,6 @@ class BufferTest(unittest.TestCase):
     import TestsState for basic uses.
     """
     def setUp(self):
-        TestsState.reset()
         TestsState.reset_window_settings('vintage')
         TestsState.reset_view_settings('vintage')
 
@@ -20,6 +19,24 @@ class BufferTest(unittest.TestCase):
 
     def R(self, a, b):
         return make_region(self.view, a, b)
+
+    def set_text(self, text):
+        set_text(self.view, text)
+
+    def add_sel(self, a, b):
+        add_sel(self.view, a, b)
+
+    def get_sel(self, num):
+        return get_sel(self.view, num)
+
+    def first_sel(self):
+        return first_sel(self.view)
+
+    def second(self):
+        return second_sel(self.view)
+
+    def last_sel(self):
+        return last_sel(self.view)
 
 
 def make_region(view, a, b):
