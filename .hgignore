@@ -9,6 +9,7 @@ syntax: glob
 *.tags_sorted_by_file
 
 *~
+*.swp
 
 dist/
 
