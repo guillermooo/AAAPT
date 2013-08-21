@@ -18,7 +18,7 @@ class BufferTest(unittest.TestCase):
         self.view.sel().clear()
 
     def R(self, a, b):
-        return make_region(self.view, a, b)
+        return R(self.view, a, b)
 
     def set_text(self, text):
         set_text(self.view, text)
@@ -32,20 +32,25 @@ class BufferTest(unittest.TestCase):
     def first_sel(self):
         return first_sel(self.view)
 
-    def second(self):
+    def second_sel(self):
         return second_sel(self.view)
 
     def last_sel(self):
         return last_sel(self.view)
 
 
-def make_region(view, a, b):
+def R(view, a, b):
     """
-    Creates a new selection. Can be used in two ways:
+    Creates a new region. Can be used in two ways:
 
-        make_region(10, 15) => Makes a region spanning from 10 to 15.
-        make_region((0, 10), (3, 15)) => Makes a region spanning from 10th col
-                                         in row 0 to 15th col in row 3.
+        1. To make a region from point a to point b:
+
+            r = R(10, 15)
+
+        2. To make a region spanning specific lines:
+
+            # Tuples specify (row, col) as returned by view.rowcol().
+            r = R((0, 10), (3, 15))
     """
     try:
         pt_a = view.text_point(*a)
@@ -56,7 +61,7 @@ def make_region(view, a, b):
 
     if (isinstance(a, int) and isinstance(b, int)):
         return sublime.Region(a, b)
-    raise ValueError("a and b parameters must be either ints or (row, col)")
+    raise ValueError("a and b parameters must be either ints or (int, int)")
 
 
 def set_text(view, text):
