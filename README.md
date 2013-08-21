@@ -11,7 +11,7 @@ Installation
 2. Copy *AAAPT.sublime-package* to *Packages/Installed Packages*
 3. Restart Sublime Text.
 
-To locate *Packages/Installed Packages*, you can open the console (<kbd>Ctrl</kbd>+<kbd>`</kbd> and run this:
+To locate *Packages/Installed Packages*, you can open the console (<kbd>Ctrl</kbd>+<kbd>`</kbd>) and run this:
 
 ```python
 sublime.installed_packages_folder()
@@ -25,7 +25,7 @@ AAAPT lets you run tests in the context of Sublime Text. To use AAAPT correctly 
 two things:
 
 * Your package has specified tests to be run by AAAPT
-* There's no other currently loaded *\*.sublime-package* that includes AAPT tests
+* There's no other currently loaded *.sublime-package* that includes AAPT tests
 
 Specifying tests is easy. Simply create a file like *test_harness.py* at the top level of your
 *FooPackage.sublime-package* and include something like this:
