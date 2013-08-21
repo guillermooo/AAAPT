@@ -4,8 +4,8 @@ import sublime_plugin
 from itertools import chain
 import io
 import os
-import unittest
 import tempfile
+import unittest
 
 
 # A tuple: (low level file_descriptor, path) as returned by `tempfile.mkstemp()`.
@@ -57,10 +57,6 @@ class _xpt_show_suites(sublime_plugin.WindowCommand):
     '''
     suite = None
 
-    @staticmethod
-    def register(suite):
-        _xpt_show_suites.suite = combine(suite)
-
     def run(self):
         TestsState.running = True
         self.window.show_quick_panel(sorted(_xpt_show_suites.suite.keys()), self.on_done)
@@ -76,14 +72,14 @@ class _xpt_show_suites(sublime_plugin.WindowCommand):
         self.window.run_command('_xpt_run_tests')
 
 
-class _xptPrintResults(sublime_plugin.TextCommand):
+class _xpt_print_results(sublime_plugin.TextCommand):
     def run(self, edit, content):
         view = sublime.active_window().new_file()
         view.insert(edit, 0, content)
         view.set_scratch(True)
 
 
-class _xptRunTests(sublime_plugin.WindowCommand):
+class _xpt_run_tests(sublime_plugin.WindowCommand):
     def run(self):
         make_temp_file()
         # We open the file here, but Sublime Text loads it asynchronously, so we continue in an
@@ -91,7 +87,7 @@ class _xptRunTests(sublime_plugin.WindowCommand):
         self.window.open_file(TEST_DATA_PATH[1])
 
 
-class _xptTestDataDispatcher(sublime_plugin.EventListener):
+class _xpt_test_data_dispatcher(sublime_plugin.EventListener):
     def on_load(self, view):
         if TEST_DATA_PATH:
             try:
