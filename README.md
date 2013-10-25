@@ -14,7 +14,7 @@ Installation
 To locate *Packages/Installed Packages*, you can open the console (<kbd>Ctrl</kbd>+<kbd>`</kbd>) and run this:
 
 ```python
-sublime.installed_packages_folder()
+sublime.installed_packages_path()
 ```
 
 
