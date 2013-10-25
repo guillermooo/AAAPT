@@ -25,7 +25,6 @@
 					 "*.ps1",
 					 "*.hg*",
 					 "*manifest.json",
-					 "*.sublime-commands",
 					 "*test_harness.py"]
 			]
 		]
