@@ -69,7 +69,7 @@ class Test_Sample(unittest.TestCase):
         self.assertTrue(False)
 ```
 
-Finally, we can publish *FooPackage.sublime-package* to *Packages/Installed Packages*, restart
+Finally, we can publish *FooPackage.sublime-package* to *Installed Packages*, restart
 Sublime Text and, from the Command Palette, select **Run Active Tests...**. The results of the
 test run will be printed to a new view.
 
